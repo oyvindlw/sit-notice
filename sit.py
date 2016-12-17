@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 from lxml import html
-from gi.repository import Notify
 import requests
+import datetime
+from gi.repository import Notify
+
+ukedag = datetime.datetime.today().weekday()
+
+
 
 def main():
     page = requests.get('https://www.sit.no/middag/elgeseter')
@@ -9,11 +14,23 @@ def main():
     sit = tree.xpath('//li[@class="dishes__dishes__dish dishes__dishes__dish--old-day"]/text()')
     
     sit = [s.strip() for s in sit]
+    
+    Notify.init ("sit-notice")
+    
+    if ukedag == 0:
+        lunsjMessage = ("Dagens lunsj: {} og {}.".format(sit[0], sit[2]))
+    elif ukedag == 1:
+        lunsjMessage = ("Dagens lunsj: {} og {}.".format(sit[4], sit[6]))
+    elif ukedag == 2:
+        lunsjMessage = ("Dagens lunsj: {} og {}.".format(si[8], sit[10]))
+    elif ukedag == 3:
+        lunsjMessage = ("Dagens lunsj: {} og {}.".format(sit[12], sit[14]))
+    elif ukedag == 4:
+        lunsjMessage = ("Dagens lunsj: {} og {}.".format(sit[16], sit[18]))
+    else:
+        lunchMessage = "Ingen lunsj idag."
 
-    Notify.init ("Hello world")
-    Hello=Notify.Notification.new ("Hello world",
-                               "This is an example notification.",
-                               "dialog-information")
+    Hello=Notify.Notification.new ("test")
     Hello.show ()
 
 if __name__ == "__main__":
