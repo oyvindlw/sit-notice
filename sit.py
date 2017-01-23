@@ -15,7 +15,7 @@ ukedag = datetime.datetime.today().weekday()
 def main():
     page = requests.get('https://www.sit.no/middag/elgeseter')
     tree = html.fromstring(page.content)
-    sit = tree.xpath('//li[@class="dishes__dishes__dish dishes__dishes__dish--old-day"]/text()')
+    sit = tree.xpath('//li[@class="dishes__dishes__dish dishes__dishes__dish--new-day"]/text()')
     
     sit = [s.strip() for s in sit]
     sit = list(filter(None, sit))
