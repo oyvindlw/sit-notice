@@ -19,7 +19,7 @@ def main():
     Notify.init ("sit-notice")
     
 
-    if sit: |
+    if sit:
         lunsjMessage = "\n".join(str(x) for x in sit)
     else:
         lunsjMessage = "Ingen lunsj idag."
